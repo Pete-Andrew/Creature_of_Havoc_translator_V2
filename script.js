@@ -22,7 +22,62 @@ document.getElementById('outputSentance').style.fontSize="14pt";
       }
   });
 
+      // get the size of the imported image
+      function getSize() {
+        $("#inputFile").change(function (e) {
+            var file, img;
+
+            if ((file = this.files[0])) {
+                img = new Image(); //Image() constructor creates a new HTMLImageElement instance. It is functionally equivalent to document.createElement('img').
+                img.onload = function () {
+
+                    imgWidth = this.width;
+                    imgHeight = this.height;
+                    // logs out the size of the imported im in px
+                    console.log("raw imported Width of img (imgWidth) in px = " + imgWidth);
+                    console.log("raw imported Height of img (imgHeight) in px = " + imgHeight);
+                };
+
+                img.onerror = function () {
+                    alert("not a valid file: " + file.type);
+                };
+
+                // Log the name of the uploaded file
+                // console.log("Name of the uploaded image: " + file.name);
+                img.src = URL.createObjectURL(file); //Each time you call createObjectURL(), a new object URL is created.
+                imgLoaded = true;
+                console.log("image loaded = " + imgLoaded);
+                console.log()
+            }
+        });
+    };
+    getSize();
+
+
+
 // pass the photo to tesseract to turn the text into images
+//Tesseract is loaded by a CDN link in the index html
+
+let language = 'eng';
+let image = 'https://www.weareteachers.com/wp-content/uploads/9-8.jpg';
+
+Tesseract.recognize(
+  image,language,
+  { 
+    // logger console's out the tesseract process, can be commented out. 
+    // logger: m => console.log(m) 
+  }
+)
+.catch (err => {
+  console.error("There has been an error = " + err);
+})
+//opens the resulting object and console logs the out put
+.then(({ data: { text } }) => {
+  console.log(text);
+})
+
+
+
 // output the text so it can be cropped to just the coded text
 
 
@@ -248,3 +303,6 @@ There are three rules to this code:
 //     at decoder (script.js:97:2)
 //     at HTMLButtonElement.onclick (main.html:53:33)
 
+//Invaluable advice about tesseract: 
+//https://www.youtube.com/watch?v=kHTasYqs4Tw&ab_channel=CodeRadiance
+//https://github.com/naptha/tesseract.js#tesseractjs
