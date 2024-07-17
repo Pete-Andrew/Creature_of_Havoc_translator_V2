@@ -1,0 +1,46 @@
+body {
+    background-color: cornsilk;
+}
+
+h1 {
+    text-align: center;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    box-sizing: border-box; 
+    text-align: justify;
+
+}
+
+@media (max-width: 800px) {  
+    #vapour {
+      display: none;
+    }
+  }
+
+#vapour {
+    width: 100%;
+}
+
+@media (max-width: 800px) {  
+    #man_orcs {
+      display: none;
+    }
+  }
+
+  #man_orcs {
+    width: 100%;
+}
+
+@media (max-width: 800px) {  
+    .column {
+      width: 100%;
+    }
+  }
+
+textarea {
+    width: 100%;
+}
