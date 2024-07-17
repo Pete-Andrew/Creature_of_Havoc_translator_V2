@@ -44,3 +44,45 @@ h1 {
 textarea {
     width: 100%;
 }
+
+/* image uploader */
+
+/* hero is the parent div and contains the dropArea, imageView and backgroundImage divs */
+.hero {
+  width: 100%;
+}
+
+#dropArea {
+  width: 100%;
+  height: 100vh;
+  padding: 10px;
+  background: rgb(255, 255, 255);
+  text-align: center;
+}
+
+#imageView {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* border-radius: 20px; */
+  /* padding-top: 40vh; */
+  border: 2px solid #2d3030;
+  background: #F5F5F5;
+  overflow: hidden;    
+}
+
+/* shows the background image when it's imported */
+#backgroundImage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* stretches the img to fill the div BUT keeps the proportions*/
+  width: 100%;
+  height:100%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 2;
+}
+

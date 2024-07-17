@@ -1,9 +1,31 @@
+const backgroundImage = document.getElementById("backgroundImage");
 
 document.getElementById('inputSentance').style.height="200px";
 document.getElementById('inputSentance').style.fontSize="14pt";
 
 document.getElementById('outputSentance').style.height="200px";
 document.getElementById('outputSentance').style.fontSize="14pt";
+
+//create a box for API key (and make a gitignore for API)
+// take a photo and add it to local storage AND/OR add a photo from phone settings
+
+
+// uploads the image as either a drag and drop or an open file
+    function uploadImage(file) {
+      let imgLink = URL.createObjectURL(file);
+      backgroundImage.style.backgroundImage = `url(${imgLink})`;
+  }
+
+  inputFile.addEventListener("change", function () {
+      if (this.files.length > 0) {
+          uploadImage(this.files[0]);
+      }
+  });
+
+// pass the photo to tesseract to turn the text into images
+// output the text so it can be cropped to just the coded text
+
+
 
 // decoder wraps all the function
 function decoder () {
@@ -204,6 +226,8 @@ console.log("code with random spaces " + codeWithRandomSpaces);
 }  
   
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
+
+// run the output through Google Cloud Natural Language API or Microsoft Azure Cognitive Services - Spell Check API
 
 
 /* Notes: 
