@@ -1,12 +1,13 @@
 const backgroundImage = document.getElementById("backgroundImage");
 
 let ImageToTextButton = document.getElementById('imageToText'); 
+let inputTextBox = document.getElementById('inputSentence'); 
 
-document.getElementById('inputSentance').style.height="200px";
-document.getElementById('inputSentance').style.fontSize="14pt";
+document.getElementById('inputSentence').style.height="200px";
+document.getElementById('inputSentence').style.fontSize="14pt";
 
-document.getElementById('outputSentance').style.height="200px";
-document.getElementById('outputSentance').style.fontSize="14pt";
+document.getElementById('outputSentence').style.height="200px";
+document.getElementById('outputSentence').style.fontSize="14pt";
 
 let image;
 
@@ -70,7 +71,9 @@ let uploadedImageUrl = "";
 ImageToTextButton.addEventListener("click", useTesseract);
 
 function useTesseract () {
-
+//clear the inputText area text (if any)
+inputTextBox.value = '';
+//runs the tesseract function
 console.log("tesseract has been called");
 let language = 'eng';
 image = uploadedImageUrl;
@@ -88,11 +91,11 @@ Tesseract.recognize(
 })
 //opens the resulting object and console logs the out put
 .then(({ data: { text } }) => {
+  // pass the output text into the input text box
   console.log(text);
+  inputTextBox.value = text;
 })
 }
-
-// useTesseract();
 
 
 // output the text so it can be cropped to just the coded text
@@ -102,12 +105,12 @@ Tesseract.recognize(
 // decoder wraps all the function
 function decoder () {
 
-// gets the string from the inputSentance input box
-var inputString = document.getElementById("inputSentance").value;
-
-// outputArray is the string that has been tunred into an array
+// gets the string from the inputsentence input box
+var inputString = document.getElementById("inputSentence").value;
+console.log("input String = " + inputString)
+// outputArray is the string that has been turned into an array
 var outputArray = [];
-//translated String = vowels have been turned into spaces, these will eventully become spaces
+//translated String = vowels have been turned into spaces, these will eventually become spaces
 var translatedString = [];
 //nospaceString = white space has been removed
 var noSpaceString = [];
@@ -154,7 +157,7 @@ function replaceVowels (outputArray) {
  replaceVowels (outputArray); 
  console.log("Decoder: translatedString: word spaces have been replaced by asterisks = " + translatedString);
  
- //removespaces
+ //remove spaces
   function removeWhiteSpace () {
   	for (i=0; i < translatedString.length; i++) {
    			if (translatedString[i] == " ") {
@@ -168,12 +171,12 @@ function replaceVowels (outputArray) {
   removeWhiteSpace(); 
   console.log("Decoder: noSpaceString: white space removed = " + noSpaceString);
  
- //adds vowels to relevant spaces, e replaces f etc.. 
- // this causes problems as not all the consonants need replacing.  
+//adds vowels to relevant spaces, e replaces f etc.. 
+//this causes problems as not all the consonants need replacing.  
  
- function placeVowels (noSpaceString) { 
+function placeVowels (noSpaceString) { 
  
- 		var modified = 
+ 		let modified = 
     noSpaceString.map(e => e
     .replace("f", "e")
     .replace("b", "a")
@@ -186,11 +189,11 @@ function replaceVowels (outputArray) {
     
     console.log("Decoder: consonants have been replaced with appropriate vowels = " + modified); 
  		sortPunctuation(modified)
- }
+}
  
- placeVowels(noSpaceString); 
+placeVowels(noSpaceString); 
  
- function sortPunctuation (modified) {
+function sortPunctuation (modified) {
           
           const finalString = modified
           .toString()
@@ -200,7 +203,7 @@ function replaceVowels (outputArray) {
           console.log("Decoder: final decoded output = " + finalString);
           
           //takes the final string and puts it in the output box
-          document.getElementById("outputSentance").value = finalString;
+          document.getElementById("outputSentence").value = finalString;
 
  }
 }
@@ -209,7 +212,7 @@ function replaceVowels (outputArray) {
 
 function encoder () {
   
-  var outputString = document.getElementById("outputSentance").value;
+  var outputString = document.getElementById("outputSentence").value;
   var englishToTranslateString = outputString.split("");
   var vowelsReplaced = ""
   var vowelsReplacedArray = [];
@@ -292,7 +295,7 @@ console.log("code with random spaces " + codeWithRandomSpaces);
     .join("")
               
     console.log("Decoder: final decoded output = " + encodedFinalString);
-    document.getElementById("inputSentance").value = encodedFinalString;
+    document.getElementById("inputSentence").value = encodedFinalString;
   }
   convertedToCode();
 }  
