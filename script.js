@@ -1,10 +1,17 @@
 const backgroundImage = document.getElementById("backgroundImage");
 
+let ImageToTextButton = document.getElementById('imageToText'); 
+
 document.getElementById('inputSentance').style.height="200px";
 document.getElementById('inputSentance').style.fontSize="14pt";
 
 document.getElementById('outputSentance').style.height="200px";
 document.getElementById('outputSentance').style.fontSize="14pt";
+
+let image;
+
+// Global variable to store the image URL
+let uploadedImageUrl = "";
 
 //create a box for API key (and make a gitignore for API)
 // take a photo and add it to local storage AND/OR add a photo from phone settings
@@ -33,6 +40,7 @@ document.getElementById('outputSentance').style.fontSize="14pt";
 
                     imgWidth = this.width;
                     imgHeight = this.height;
+                    // imgPath =
                     // logs out the size of the imported im in px
                     console.log("raw imported Width of img (imgWidth) in px = " + imgWidth);
                     console.log("raw imported Height of img (imgHeight) in px = " + imgHeight);
@@ -44,22 +52,29 @@ document.getElementById('outputSentance').style.fontSize="14pt";
 
                 // Log the name of the uploaded file
                 // console.log("Name of the uploaded image: " + file.name);
-                img.src = URL.createObjectURL(file); //Each time you call createObjectURL(), a new object URL is created.
+                img.src = URL.createObjectURL(file); //Each time you call createObjectURL(), a new object URL is created called file.
                 imgLoaded = true;
                 console.log("image loaded = " + imgLoaded);
-                console.log()
+                console.log(img.src)
+
+                // Store the image URL in the global variable
+                uploadedImageUrl = img.src;
             }
         });
     };
     getSize();
 
-
-
-// pass the photo to tesseract to turn the text into images
+//Pass the photo to tesseract to turn the text into images
 //Tesseract is loaded by a CDN link in the index html
 
+ImageToTextButton.addEventListener("click", useTesseract);
+
+function useTesseract () {
+
+console.log("tesseract has been called");
 let language = 'eng';
-let image = 'https://www.weareteachers.com/wp-content/uploads/9-8.jpg';
+image = uploadedImageUrl;
+// image = file.name;
 
 Tesseract.recognize(
   image,language,
@@ -75,7 +90,9 @@ Tesseract.recognize(
 .then(({ data: { text } }) => {
   console.log(text);
 })
+}
 
+// useTesseract();
 
 
 // output the text so it can be cropped to just the coded text
