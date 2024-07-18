@@ -10,13 +10,18 @@
 <body>
 
 <!-- div class column breaks the page into 3 columns -->
-<div class="column">
+<div class="columnOne">
     <img src="./src/vapour.png" alt="" id="vapour">
+    <img src="./src/man_orcs.png" alt="" id="man_orcs">
 </div>
 
-<div class="column">
+<div class="columnTwo">
     <h1>Creature of Havoc Translator</h1>
     
+    <div id="hiddenVapour">
+        <img src="./src/vapour.png" alt="" class="headerAndFooterImg">
+    </div>
+
     <div>
         <p>
             This is a decoder for the fighting fantasy book Creature of Havoc using the books original rules for decoding.
@@ -44,11 +49,14 @@
     </div>
     
     <h3>put your encoded text here:</h3>
+    <p>In order for this to work the image has to be a clear as possible. If the text is warped the decoder has issues.</p>
+    <p>You can resize text boxes by dragging the bottom right corner. </p>
        
     <textarea id="inputSentence" name="noIdeaWhatThisDoes" rows="4" cols="50"></textarea>
     <br>
 
     <h3>Alternatively you can upload a photo:</h3>
+    <p>The photo is turned into text by tesseract.js</p>
     <!-- On click submit button runs stringFunc  -->
     <!-- <input type="submit" value="Submit" id="submitButton" onclick="decoder();"> -->
 
@@ -88,8 +96,8 @@
     <textarea id="outputSentence" name="noIdeaWhatThisDoes" rows="4" cols="50"></textarea>    
 </div>
 
-<div class="column">
-    <img src="./src/man_orcs.png" alt="" id="man_orcs">
+<div id="hiddenVapour">
+    <img src="/src/man_orcs.png" alt="" class="headerAndFooterImg">
 </div>
 
 </body>

@@ -6,18 +6,46 @@ h1 {
     text-align: center;
 }
 
-.column {
+
+/* image column */
+.columnOne {
     float: left;
-    width: 33.33%;
+    width: 40.0%;
     padding: 10px;
     box-sizing: border-box; 
     text-align: justify;
 
 }
 
+/* code column */
+.columnTwo {
+  float: right;
+  width: 60.0%;
+  padding: 10px;
+  box-sizing: border-box; 
+  text-align: justify;
+
+}
+
+.headerAndFooterImg {
+  display: none;
+}
+
+/* changes the display when the screen is small */
 @media (max-width: 800px) {  
     #vapour {
       display: none;
+      
+    }
+    .columnOne{
+      width: 0%;
+    }
+    .columnTwo {
+      width: 100%;
+    }
+    .headerAndFooterImg {
+      display: block;
+      width: 100%;
     }
   }
 
