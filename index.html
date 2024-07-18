@@ -1,104 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Creature of Havoc Translator</title>
-    
+
 </head>
+
 <body>
 
-<!-- div class column breaks the page into 3 columns -->
-<div class="columnOne">
-    <img src="./src/vapour.png" alt="" id="vapour">
-    <img src="./src/man_orcs.png" alt="" id="man_orcs">
-</div>
-
-<div class="columnTwo">
-    <h1>Creature of Havoc Translator</h1>
-    
-    <div id="hiddenVapour">
-        <img src="./src/vapour.png" alt="" class="headerAndFooterImg">
+    <!-- div class column breaks the page into 3 columns -->
+    <div class="columnOne">
+        <img src="./src/vapour.png" alt="" id="vapour">
+        <img src="./src/man_orcs.png" alt="" id="man_orcs">
     </div>
 
-    <div>
-        <p>
-            This is a decoder for the fighting fantasy book Creature of Havoc using the books original rules for decoding.
-            I added an encoder as well. 
-        </p>
-    </div>
+    <div class="columnTwo">
+        <h1>Creature of Havoc Translator</h1>
+
+        <div id="hiddenVapour">
+            <img src="./src/vapour.png" alt="" class="headerAndFooterImg">
+        </div>
+
+        <div>
+            <p>
+                This is a decoder for the fighting fantasy book Creature of Havoc using the books original rules for
+                decoding.
+                I added an encoder as well.
+            </p>
+        </div>
 
 
-    <div>
-        <h3>There are three rules to this code: </h3>
-        <p>
-            1. each vowel has been replaced by the following letter, e.g. b = a, f = e, etc... <br>
-            2. existing vowels represent spaces <br>
-            3. actual spaces are random and mean nothing <br><br>
-            However, this code replaces ALL consonants that follow vowels with their preceding vowel. This means the decoding isn't perfect but is easier to read then the raw encoded text.    
-        </p>
-    </div>
+        <div>
+            <h3>There are three rules to this code: </h3>
+            <p>
+                1. each vowel has been replaced by the following letter, e.g. b = a, f = e, etc... <br>
+                2. existing vowels represent spaces <br>
+                3. actual spaces are random and mean nothing <br><br>
+                However, this code replaces ALL consonants that follow vowels with their preceding vowel. This means the
+                decoding isn't perfect but is easier to read then the raw encoded text.
+            </p>
+        </div>
 
-    <div>
-    <h3>Some example text from the book:</h3> 
-    <p>whpojs ijt. Whb tajs i hbp pfnjng. W hbta hb sad jstvr bf devs. Plf bsfe gpdor fl  fbsf ethjs iblb cka fyfec vrsf.</p> 
-    <h3>The English translation:</h3>
-    <p>Who is it. What is happening. What has disturbed us. Please god release this black eye curse.</p>
-    
-    </div>
-    
-    <h3>put your encoded text here:</h3>
-    <p>In order for this to work the image has to be a clear as possible. If the text is warped the decoder has issues.</p>
-    <p>You can resize text boxes by dragging the bottom right corner. </p>
-       
-    <textarea id="inputSentence" name="noIdeaWhatThisDoes" rows="4" cols="50"></textarea>
-    <br>
+        <div>
+            <h3>Some example text from the book:</h3>
+            <p>whpojs ijt. Whb tajs i hbp pfnjng. W hbta hb sad jstvr bf devs. Plf bsfe gpdor fl fbsf ethjs iblb cka
+                fyfec vrsf.</p>
+            <h3>The English translation:</h3>
+            <p>Who is it. What is happening. What has disturbed us. Please god release this black eye curse.</p>
 
-    <h3>Alternatively you can upload a photo:</h3>
-    <p>The photo is turned into text by tesseract.js</p>
-    <!-- On click submit button runs stringFunc  -->
-    <!-- <input type="submit" value="Submit" id="submitButton" onclick="decoder();"> -->
+        </div>
 
-    <!-- Div for uploading images -->
-    <div class="hero">
-        <label for="inputFile" id="dropArea">
-            <input type="file" accept="image/*" id="inputFile" hidden>
-            
-            <div id="imageView">
-                <div id="backgroundImage"></div>
-                
-                <!-- gives the header in the info div -->
-                <div id="infoDiv">
-                    <p>click here <br> to upload image</p>
+        <h3>put your encoded text here:</h3>
+        <p>In order for this to work the image has to be a clear as possible. If the text is warped the decoder has
+            issues.</p>
+        <p>You can resize text boxes by dragging the bottom right corner. </p>
+
+        <textarea id="inputSentence" name="noIdeaWhatThisDoes" rows="4" cols="50"></textarea>
+        <br>
+
+        <h3>Alternatively you can upload a photo:</h3>
+        <p>The photo is turned into text by tesseract.js</p>
+        <p>The clearer the photo the better as tesseract will struggle with badly lit or warped images</p>
+        <!-- On click submit button runs stringFunc  -->
+        <!-- <input type="submit" value="Submit" id="submitButton" onclick="decoder();"> -->
+
+        <!-- Div for uploading images -->
+        <div class="hero">
+            <label for="inputFile" id="dropArea">
+                <input type="file" accept="image/*" id="inputFile" hidden>
+
+                <div id="imageView">
+                    <div id="backgroundImage"></div>
+
+                    <!-- gives the header in the info div -->
+                    <div id="infoDiv">
+                        <p>click here <br> to upload image</p>
+                    </div>
                 </div>
-            </div>
-        </label>
+            </label>
+        </div>
+
+        <br>
+
+
+        <h3>Translator Buttons:</h3>
+        <div id="clickButtons">
+            <button id="imageToText">Image to text</button>
+            <button onclick="decoder()">Code to English</button>
+            <button onclick="encoder()">English to Code</button>
+            <!-- creates a button that clears the text box -->
+            <button onclick="document.getElementById('inputSentence').value = ''">Clear Input</button>
+            <button onclick="document.getElementById('outputSentence').value = ''">Clear Output</button>
+            <br><br>
+        </div>
+
+        <h3>translated text:</h3>
+        <textarea id="outputSentence" name="noIdeaWhatThisDoes" rows="4" cols="50"></textarea>
     </div>
 
-    <br>
-
-
-    <h3>Translator Buttons:</h3>
-<div id="clickButtons">
-    <button id="imageToText">Image to text</button>
-    <button onclick="decoder()">Code to English</button>
-    <button onclick="encoder()">English to Code</button>
-    <!-- creates a button that clears the text box -->
-    <button onclick="document.getElementById('inputSentence').value = ''">Clear Input</button>
-    <button onclick="document.getElementById('outputSentence').value = ''">Clear Output</button>
-    <br><br>
-</div>
-
-
-    <h3>translated text:</h3>
-
-    <textarea id="outputSentence" name="noIdeaWhatThisDoes" rows="4" cols="50"></textarea>    
-</div>
-
-<div id="hiddenVapour">
-    <img src="/src/man_orcs.png" alt="" class="headerAndFooterImg">
-</div>
+    <div id="hiddenVapour">
+        <img src="/src/man_orcs.png" alt="" class="headerAndFooterImg">
+    </div>
 
 </body>
 <!-- adds jquery -->
@@ -107,4 +112,3 @@
 <script src="script.js"></script>
 
 </html>
-
