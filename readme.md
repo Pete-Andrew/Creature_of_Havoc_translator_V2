@@ -1,4 +1,4 @@
-Creature of Havoc decoder  
+## Creature of Havoc decoder  
 
 ![alt text](/src/creature_of_havoc_screenshot.jpg "Creature of Havoc screenshot")
 
